@@ -4,7 +4,8 @@ import {Redirect} from 'react-router-dom';
 const Login = () => {
   const [userName, setUserName] = useState('');
   const [userPassword, setUserPassword] = useState('');
-	const [redirect,setRedirect]= useState(null)
+	const [redirect,setRedirect]= useState(null);
+	const [signUp,setSignUp]=useState(null);
 
   const SetUserName = (event) => {
     return setUserName(event.target.value);
@@ -20,12 +21,18 @@ const Login = () => {
 		
     
     } else {
-      alert('please sign up');
+      alert('You do not signedup,Please sign up');
     }
   };
+	const SignUpMe=()=>{
+		setSignUp('/signup');
+	}
 
 	if(redirect){
 		return(<Redirect to={redirect}></Redirect>)
+	}
+	else if(signUp){
+		return(<Redirect to= {signUp}></Redirect>)
 	}
   return (
     <div>
@@ -39,7 +46,7 @@ const Login = () => {
       </span>
       <div>
         <span onClick={LoginClick}>Login</span>
-        <span>Signup</span>
+        <span onClick={SignUpMe}>Signup</span>
       </div>
     </div>
   );
